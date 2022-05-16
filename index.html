@@ -40,7 +40,7 @@
         </article>
       </section>
 
-      <article class="container" v-if="winner">
+      <article class="container-add" v-if="winner">
         <h2>Result</h2>
         <h3 v-if="winner === 'lost'">You died!</h3>
         <h3 v-if="winner === 'draw'">Draw!</h3>
@@ -59,7 +59,7 @@
         <button @click="surrender()">SURRENDER</button>
       </article>
 
-      <article id="log" class="container-log">
+      <article id="log" class="container-add">
         <h2>Battle Log</h2>
         <ul>
           <li v-for="log in logMessage">
