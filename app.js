@@ -66,7 +66,7 @@ const app = Vue.createApp({
                 }
 
                 if(this.playerHealth + healValue >= 100) {
-                    return (this.playerHealth = 100, this.itemsHeal--)
+                    return (this.playerHealth = 100, this.itemsHeal--, this.addLogMessage('Player', 'heal', healValue))
                 }
 
                 this.playerHealth += healValue
