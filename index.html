@@ -18,56 +18,68 @@
     </header>
 
     <main id="game">
-
-      <section id="monster" class="container">
-        <h2>Monster Health</h2>
-        <div class="healthbar">
-          <div class="healthbar__value" :style="monsterBarStyle"></div>
-        </div>
+      <section>
+        <article id="player" class="container">
+          <figure>
+            <img id="hero" src="./assets/corey-smith-idle.gif" alt="">
+          </figure>
+          <h2>Hero</h2>
+          <div class="healthbar">
+            <div class="healthbar__value" :style="playerBarStyle"></div>
+          </div>
+        </article>
+        
+        <article id="monster" class="container">
+          <figure>
+            <img id="hero" src="./assets/dog.gif" alt="">
+          </figure>
+          <h2>Monster</h2>
+          <div class="healthbar">
+            <div class="healthbar__value" :style="monsterBarStyle"></div>
+          </div>
+        </article>
       </section>
 
-      <section id="player" class="container">
-        <h2>Your Health</h2>
-        <div class="healthbar">
-          <div class="healthbar__value" :style="playerBarStyle"></div>
-        </div>
-      </section>
-
-      <section class="container" v-if="winner">
+      <article class="container" v-if="winner">
         <h2>Result</h2>
         <h3 v-if="winner === 'lost'">You died!</h3>
         <h3 v-if="winner === 'draw'">Draw!</h3>
         <h3 v-if="winner === 'win'">You win!</h3>
         <button @click="newGame()">New Game</button>
-      </section>
+      </article>
 
-      <section id="controls" v-if="showControls">
+      <article id="controls" v-if="showControls">
         <button @click="attackMonster()">ATTACK</button>
-        <button @click="specialAttack()" :disabled="specialAttackActivate">SPECIAL ATTACK</button>
-        <button @click="healPlayer()" :disabled="healActive">HEAL ({{itemsHeal}})</button>
+        <button @click="specialAttack()" :disabled="specialAttackActivate">
+          SPECIAL ATTACK
+        </button>
+        <button @click="healPlayer()" :disabled="healActive">
+          HEAL ({{itemsHeal}})
+        </button>
         <button @click="surrender()">SURRENDER</button>
-      </section>
+      </article>
 
-      <section id="log" class="container">
+      <article id="log" class="container-log">
         <h2>Battle Log</h2>
         <ul>
           <li v-for="log in logMessage">
             <span
-            :class="{'log--player': log.actionBy === 'Player', 'log--monster': log.actionBy === 'Monster'}"
-            >{{log.actionBy === 'Player' ? 'Player' : 'Monster'}}</span>
+              :class="{'log--player': log.actionBy === 'Player', 'log--monster': log.actionBy === 'Monster'}"
+              >{{log.actionBy === 'Player' ? 'Player' : 'Monster'}}</span
+            >
 
             <span v-if="log.actionType==='heal'">
-              heals himself for <span class="log--heal">{{log.actionValue}}</span> HP
+              heals himself for
+              <span class="log--heal">{{log.actionValue}}</span> HP
             </span>
 
             <span v-else>
-              attacks and deals <span class="log--damage">{{log.actionValue}}</span> HP
+              attacks and deals
+              <span class="log--damage">{{log.actionValue}}</span> HP
             </span>
-
           </li>
         </ul>
-      </section>
-
+      </article>
     </main>
   </body>
 </html>
